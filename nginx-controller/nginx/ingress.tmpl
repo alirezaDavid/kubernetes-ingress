@@ -1,5 +1,6 @@
 {{range $upstream := .Upstreams}}
 upstream {{$upstream.Name}} {
+	keepalive 60;
 	{{range $server := $upstream.UpstreamServers}}
 	server {{$server.Address}}:{{$server.Port}};{{end}}
 }{{end}}
@@ -38,6 +39,8 @@ server {
 	{{range $location := $server.Locations}}
 	location {{$location.Path}} {
 		proxy_http_version 1.1;
+		proxy_set_header Connection "";
+		
 		{{if $location.Websocket}}
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection $connection_upgrade;
