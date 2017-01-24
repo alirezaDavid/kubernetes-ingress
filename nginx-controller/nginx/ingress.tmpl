@@ -8,6 +8,13 @@ upstream {{$upstream.Name}} {
 {{range $server := .Servers}}
 server {
 	listen 80{{if $server.ProxyProtocol}} proxy_protocol{{end}};
+
+	location ~* .(woff|eot|ttf|svg|mp4|webm|jpg|jpeg|png|gif|ico|css|js)$ {
+		expires 365d;
+		add_header Pragma public;
+		add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+	}
+
 	{{if $server.SSL}}
 	listen 443 ssl{{if $server.HTTP2}} http2{{end}}{{if $server.ProxyProtocol}} proxy_protocol{{end}};
 	ssl_certificate {{$server.SSLCertificate}};
