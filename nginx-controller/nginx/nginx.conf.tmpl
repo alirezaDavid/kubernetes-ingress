@@ -31,11 +31,6 @@ http {
     tcp_nodelay        on;
     keepalive_timeout  65;
 
-    open_file_cache          max=2000 inactive=20s;
-    open_file_cache_valid    60s;
-    open_file_cache_min_uses 5;
-    open_file_cache_errors   off;
-
     gzip  on;
     gzip_comp_level  2;
     gzip_vary on;
