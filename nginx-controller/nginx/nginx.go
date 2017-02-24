@@ -40,6 +40,7 @@ type UpstreamServer struct {
 
 // Server describes an NGINX server
 type Server struct {
+	ServerSnippets        []string
 	Name                  string
 	ServerTokens          bool
 	Locations             []Location
@@ -47,6 +48,7 @@ type Server struct {
 	SSLCertificate        string
 	SSLCertificateKey     string
 	HTTP2                 bool
+	RedirectToHTTPS       bool
 	ProxyProtocol         bool
 	HSTS                  bool
 	HSTSMaxAge            int64
@@ -62,6 +64,7 @@ type Server struct {
 
 // Location describes an NGINX location
 type Location struct {
+	LocationSnippets     []string
 	Path                 string
 	Upstream             Upstream
 	ProxyConnectTimeout  string
@@ -82,6 +85,7 @@ type NginxMainConfig struct {
 	ServerNamesHashMaxSize    string
 	LogFormat                 string
 	HealthStatus              bool
+	HTTPSnippets              []string
 	// http://nginx.org/en/docs/http/ngx_http_ssl_module.html
 	SSLProtocols           string
 	SSLPreferServerCiphers bool
