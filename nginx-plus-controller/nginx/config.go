@@ -7,7 +7,6 @@ type Config struct {
 	ProxyReadTimeout              string
 	ClientMaxBodySize             string
 	HTTP2                         bool
-	RedirectToHTTPS               bool
 	MainServerNamesHashBucketSize string
 	MainServerNamesHashMaxSize    string
 	MainLogFormat                 string
